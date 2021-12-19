@@ -14,12 +14,13 @@
         <h1 class="display-2 font-weight-bold mb-3">
           Welcome to Vuetify
         </h1>
+        <p>The property passed to HelloWorld component is <code>{{ msg }}</code></p>
 
-        <v-row>
+        <!-- <v-row> -->
           <v-btn>hi andy</v-btn>
           <v-btn>hi andy</v-btn>
-          <v-btn>hi andy</v-btn>
-        </v-row>
+          <v-btn>hi andy 33</v-btn>
+        <!-- </v-row> -->
 
         <v-timeline
           align-top
@@ -37,7 +38,7 @@
               dark
             >
               <v-card-title class="text-h6">
-                Lorem Ipsum Dolor
+                Lorem Ipsum Dolor ANDY
               </v-card-title>
               <v-card-text class="white text--primary">
                 <p>Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.</p>
@@ -132,6 +133,7 @@
 <script>
   export default {
     name: 'HelloWorld',
+    props: ['msg'],  // ANDY added back in
 
     data: () => ({
       ecosystem: [
@@ -207,3 +209,29 @@
     }),
   }
 </script>
+
+// ANDY - this was lost after adding the vue router plugin via `vue ui` plugins 
+// do I really need to add it back in?
+//
+// <style lang="scss">
+// #app {
+//   font-family: Avenir, Helvetica, Arial, sans-serif;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   text-align: center;
+//   color: #2c3e50;
+// }
+
+// #nav {
+//   padding: 30px;
+
+//   a {
+//     font-weight: bold;
+//     color: #2c3e50;
+
+//     &.router-link-exact-active {
+//       color: #42b983;
+//     }
+//   }
+// }
+// </style>
