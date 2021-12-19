@@ -22,3 +22,46 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# ANDY NOTES
+
+built with the steps
+
+    nvm use 16
+    npm ls -g
+    npm uninstall -g vue-cli
+    npm install -g @vue/cli
+
+Creating a Project (standard vue)
+https://cli.vuejs.org/guide/creating-a-project.html#vue-create
+
+    vue create hello-world
+    cd vue-electron-builder1
+    yarn serve
+
+To manage ALL your vue projects
+
+    vue ui
+
+## Vue CLI Plugin Electron Builder
+https://nklayman.github.io/vue-cli-plugin-electron-builder/guide/#installation
+Within the project dir
+
+    vue add electron-builder
+    yarn electron:serve
+
+yes can edit and its all hot reloaded
+
+### to build deployables
+
+    yarn electron:build
+
+for all platforms - works on a mac!
+
+    yarn electron:build --linux deb --win nsis
+
+## Interesting Observations
+
+- Running yarn serve seems independent of vue ui serve
+- The vue ui server displays tasks for electron build, serve as well as normal build, serve - which is nice
+
