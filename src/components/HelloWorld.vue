@@ -15,6 +15,12 @@
           Welcome to Vuetify
         </h1>
 
+        <v-row>
+          <v-btn>hi andy</v-btn>
+          <v-btn>hi andy</v-btn>
+          <v-btn>hi andy</v-btn>
+        </v-row>
+
         <p class="subheading font-weight-regular">
           For help and collaboration with other Vuetify developers,
           <br>please join our online
