@@ -27,5 +27,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         # The act of downloading zips up the artifact and adds the .zip to the downloaded file
-        name: vue-electron-builder1-linux  # to
-        path: dist_electron/  # from
+        name: vue-electron-builder1-linux.deb  # to
+        path: dist_electron/*.deb  # from
