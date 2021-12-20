@@ -1,18 +1,12 @@
-name: Buildem
+name: Release
 on:
   push:
     branches: [ main ]
 
 jobs:
 
-  just-buildem:
-
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-
+  publish_on_linux:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2       
     - uses: actions/setup-node@master
@@ -33,5 +27,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         # The act of downloading zips up the artifact and adds the .zip to the downloaded file
-        name: vue-electron-builder1-${{ matrix.os }}  # to
-        path: dist_electron/  # from, though this is the whole directory - a bit much
+        name: vue-electron-builder1-linux.deb  # to
+        path: dist_electron/*.deb  # from
