@@ -1,5 +1,11 @@
 # vue-electron-builder1
 
+Electron Vue project built using official steps - works as website and electron app. Deploy to all architectures incl. heroku. Raspberry Pi .deb is a problem however
+
+Also contains Vuetify UI components.
+
+Deployed to Heroku https://vue-electron-builder1.herokuapp.com/#/
+
 ## Project setup
 ```
 yarn install
