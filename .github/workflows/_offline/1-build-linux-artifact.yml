@@ -1,0 +1,37 @@
+name: Buildem
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  just-buildem:
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
+    steps:
+    - uses: actions/checkout@v2       
+    - uses: actions/setup-node@master
+      with:
+        node-version: 16
+    - name: install dependencies
+      run: yarn install
+    - name: publish
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: yarn electron:build
+    - name: View resulting directory structure
+      shell: bash
+      run: |
+        ls -l
+        ls -l dist_electron/
+    - name: Save generated file as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        # The act of downloading zips up the artifact and adds the .zip to the downloaded file
+        name: vue-electron-builder1-${{ matrix.os }}  # to
+        path: dist_electron/  # from, though this is the whole directory - a bit much
