@@ -18,3 +18,14 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: yarn electron:build
+    - name: View resulting directory structure
+      shell: bash
+      run: |
+        ls -l
+        ls -l dist_electron/
+    - name: Save generated file as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        # The act of downloading zips up the artifact and adds the .zip to the downloaded file
+        name: vue-electron-builder1-linux  # to
+        path: dist_electron/  # from
