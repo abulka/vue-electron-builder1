@@ -51,6 +51,7 @@ jobs:
       run: |
         ls -l
         ls -l dist_electron/
+        ls -lR
 
     # - name: ANDY Save generated file as an artifact
     #   uses: actions/upload-artifact@v2
