@@ -114,4 +114,6 @@ built but doesn't install.
 
 See Mac Notes 'electron' for more.
 
+# Workflows
 
+![workflows](doco/vue-electron-builder1-workflows.png)

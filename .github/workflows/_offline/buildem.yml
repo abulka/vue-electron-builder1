@@ -51,10 +51,11 @@ jobs:
       run: |
         ls -l
         ls -l dist_electron/
-    - name: ANDY Save generated file as an artifact
-      uses: actions/upload-artifact@v2
-      with:
-        # The act of downloading zips up the artifact and adds the .zip to the downloaded file
-        name: vue-electron-builder1-${{ matrix.os }}  # to
-        path: dist_electron/  # from, though this is the whole directory - a bit much
+
+    # - name: ANDY Save generated file as an artifact
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     # The act of downloading zips up the artifact and adds the .zip to the downloaded file
+    #     name: vue-electron-builder1-${{ matrix.os }}  # to
+    #     path: dist_electron/  # from, though this is the whole directory - a bit much
 
