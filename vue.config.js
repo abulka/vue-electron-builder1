@@ -11,8 +11,8 @@ module.exports = {
       builderOptions: {
         // options placed here will be merged with default configuration and passed to electron-builder
 
-        files: ['dist_electron/**/*'], // This caused the build error
-        // files: ['dist/**/*'], // This caused the build error
+        // files: ['dist_electron/**/*'], // This caused the build error
+        files: ['dist/**/*'], // This caused the build error
 
         linux: {
           category: "Education",
