@@ -32,8 +32,22 @@ jobs:
         # (No need to define this secret in the repo settings)
         github_token: ${{ secrets.github_token }}
         
-        # Hopefully this solves all my problems !
+        # Hopefully this solves all my problems!  Yes it does. 🎉  See https://github.com/samuelmeuli/action-electron-builder/issues/66
+        # It causes this invocation
+        # $ /Users/runner/work/vue-electron-builder1/vue-electron-builder1/node_modules/.bin/vue-cli-service electron:build --mac
+        # instead of the problematic
+        # $ /Users/runner/work/vue-electron-builder1/vue-electron-builder1/node_modules/.bin/electron-builder --mac
+        # which in retrospect makes sense since we are using VUE with electron, not using plain electron.  
+        # Cos this samuelmeuli/action-electron-builder@v1 plugin is all about ELECTRON, not specifically VUE.  Though it is nice 
+        # enough to give us this special VUE option.
         use_vue_cli: true
+
+        # The publish key contains a set of options instructing electron-builder on how it should publish artifacts and build update info files for auto update.
+        # Plugin OFFICIAL docs https://github.com/samuelmeuli/action-electron-builder say 'args:' is for
+        #   Other arguments to pass to the electron-builder command, e.g. configuration overrides
+        # OFFICIAL https://www.electron.build/configuration/publish.html doco says: CLI Usage of electron-builder command 
+        # --publish, -p  [choices: "onTag", "onTagOrDraft", "always", "never"]
+        args: "-p always"
 
         # If the commit is tagged with a version (e.g. "v1.0.0"),
         # release the app after building
