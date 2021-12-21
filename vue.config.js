@@ -36,9 +36,12 @@ module.exports = {
             {
               target: "nsis",
             },
-            // msi only possible on a real windows machine
+            // msi only possible on a real windows machine and name of app cannot have underscores
+            // {
+            //   target: "msi",
+            // }
             {
-              target: "msi",
+              target: "portable",
             }
           ]
         },
