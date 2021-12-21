@@ -51,7 +51,7 @@ jobs:
         # node_modules/.bin/vue-cli-service electron:build --mac -p always
         # but no release or artifact is created?
         # Official electron builder doco on this pubish flag suggests not setting it, and allowing the release system to do its thing when there is a tag push,
-        args: "-p always"
+        args: "-p always --linux deb 7z --win nsis msi --mac"
 
         # Attempt to send build target options to electron builder
         # args: "--linux deb --win nsis msi --mac"
