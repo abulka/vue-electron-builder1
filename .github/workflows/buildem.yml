@@ -47,6 +47,9 @@ jobs:
         #   Other arguments to pass to the electron-builder command, e.g. configuration overrides
         # OFFICIAL https://www.electron.build/configuration/publish.html doco says: CLI Usage of electron-builder command 
         # --publish, -p  [choices: "onTag", "onTagOrDraft", "always", "never"]
+        # cause the invocation of
+        # node_modules/.bin/vue-cli-service electron:build --mac -p always
+        # but no release or artifact is created?
         args: "-p always"
 
         # If the commit is tagged with a version (e.g. "v1.0.0"),
