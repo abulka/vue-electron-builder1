@@ -50,7 +50,7 @@ jobs:
         # cause the invocation of
         # node_modules/.bin/vue-cli-service electron:build --mac -p always
         # but no release or artifact is created?
-        args: "-p always"
+        # args: "-p always"
 
         # If the commit is tagged with a version (e.g. "v1.0.0"),
         # release the app after building
