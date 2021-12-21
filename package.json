@@ -1,6 +1,6 @@
 {
   "name": "vue-electron-builder1",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "author": {
     "name": "atug",
@@ -11,8 +11,11 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "electron:build": "vue-cli-service electron:build",
+    "electron:build:andyall": "vue-cli-service electron:build --linux deb --win nsis msi --mac",
     "electron:build:andylinux": "vue-cli-service electron:build --linux",
+    "electron:build:andywin": "vue-cli-service electron:build --win nsis",
     "electron:build:andymac": "vue-cli-service electron:build --mac",
+    "electron:build:andymac-always": "vue-cli-service electron:build --mac -p always",
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps"
