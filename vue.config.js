@@ -24,6 +24,21 @@ module.exports = {
               arch: [
                 "x64"
               ]
+            },
+            {
+              target: "7z",
+            }
+
+          ]
+        },
+        win: {
+          target: [
+            {
+              target: "nsis",
+            },
+            // msi only possible on a real windows machine
+            {
+              target: "msi",
             }
           ]
         },
