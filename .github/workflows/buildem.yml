@@ -26,6 +26,16 @@ jobs:
     #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     #   run: yarn electron:build
 
+    # If you are building/releasing your Linux app for Snapcraft (which is electron-builder's default), you will additionally need to install 
+    # and sign in to Snapcraft. This can be done using an action-snapcraft step before the action-electron-builder step:
+    - name: Install Snapcraft
+      uses: samuelmeuli/action-snapcraft@v1
+      # Only install Snapcraft on Ubuntu
+      if: startsWith(matrix.os, 'ubuntu')
+      with:
+        # Log in to Snap Store
+        snapcraft_token: ${{ secrets.snapcraft_token }}
+
     - name: Build/release Electron app
       uses: samuelmeuli/action-electron-builder@v1
       with:
@@ -90,11 +100,3 @@ jobs:
     #     # The act of downloading zips up the artifact and adds the .zip to the downloaded file
     #     name: vue-electron-builder1-${{ matrix.os }}  # to
     #     path: dist_electron/  # from, though this is the whole directory - a bit much
-
-    - name: Install Snapcraft
-      uses: samuelmeuli/action-snapcraft@v1
-      # Only install Snapcraft on Ubuntu
-      if: startsWith(matrix.os, 'ubuntu')
-      with:
-        # Log in to Snap Store
-        snapcraft_token: ${{ secrets.snapcraft_token }}
