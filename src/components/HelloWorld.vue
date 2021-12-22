@@ -17,7 +17,7 @@
         <p>The property passed to HelloWorld component is <code>{{ msg }}</code></p>
 
         <!-- <v-row> -->
-          <v-btn>hi andy</v-btn>
+          <v-btn>hi andy SNAPPY</v-btn>
           <v-btn>hi andy</v-btn>
           <v-btn>hi andy 33</v-btn>
         <!-- </v-row> -->
