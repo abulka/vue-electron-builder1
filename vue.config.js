@@ -26,7 +26,7 @@ module.exports = {
               ]
             },
             {
-              target: "7z",
+              target: "snap",
             }
 
           ]
