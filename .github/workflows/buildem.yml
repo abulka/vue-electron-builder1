@@ -8,8 +8,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
         # os: [macos-latest, windows-latest]
+        # os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
 
     steps:
     - uses: actions/checkout@v2       
@@ -90,3 +91,10 @@ jobs:
     #     name: vue-electron-builder1-${{ matrix.os }}  # to
     #     path: dist_electron/  # from, though this is the whole directory - a bit much
 
+    - name: Install Snapcraft
+      uses: samuelmeuli/action-snapcraft@v1
+      # Only install Snapcraft on Ubuntu
+      if: startsWith(matrix.os, 'ubuntu')
+      with:
+        # Log in to Snap Store
+        snapcraft_token: ${{ secrets.snapcraft_token }}
