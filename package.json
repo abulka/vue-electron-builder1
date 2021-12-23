@@ -24,6 +24,7 @@
   "main": "background.js",
   "dependencies": {
     "core-js": "^3.6.5",
+    "electron-updater": "^4.6.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.0"
@@ -67,6 +68,10 @@
   "homepage": "www.atug.com",
   "license": "MIT",
   "maintainer": "atug",
-  "description": "The Metaverse virtual reality. The final outcome of all virtual worlds, augmented reality, and the Internet.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abulka/vue-electron-builder1.git"
+  },
+  "description": "Andy's Metaverse virtual reality. The final outcome of all virtual worlds, augmented reality, and the Internet.",
   "synopsis": "just playing around with vue-electron-builder"
 }
