@@ -74,7 +74,10 @@ jobs:
         # onTag is not enough, even if you tag and push - I didn't get a release!?
         # Publishing to snap we want only on tag though, so we need onTag to work, hmmm
         # args: "-p onTag"
-        args: "-p always"
+        # Because we are getting weird invocation
+        #   electron:build --mac --publish always -p always 
+        # perhaps we don't need this at all and it will be added for us
+        # args: "-p always"
 
         # Attempt to send build target options to electron builder
         # args: "--linux deb --win nsis msi --mac"
