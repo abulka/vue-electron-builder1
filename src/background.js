@@ -34,8 +34,7 @@ async function createWindow() {
     // Load the index.html when not in development
     win.loadURL('app://./index.html')
   }
-  autoUpdater.checkForUpdatesAndNotify()
-  console.log('after checkForUpdatesAndNotify')
+  autoUpdater.checkForUpdatesAndNotify()  // is an async call
 }
 
 // Quit when all windows are closed.

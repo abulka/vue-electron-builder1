@@ -1,7 +1,8 @@
 name: Buildem
 on:
   push:
-    branches: [ main ]
+    # branches: [ main ]
+    tags: ['v*']
 
 jobs:
   build-all-os:
