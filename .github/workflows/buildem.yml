@@ -1,7 +1,7 @@
 name: Buildem
 on:
   push:
-    branches: [ main ]
+    # branches: [ main ]
     tags: ['v*']
 
 jobs:
@@ -26,6 +26,13 @@ jobs:
     #   env:
     #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     #   run: yarn electron:build
+
+    # - name: Debug show environment?
+    #   shell: bash
+    #   run: |
+    #     echo "RUNNER_OS is $RUNNER_OS"
+    #     echo ${{ matrix.os }}
+    #     echo ${{ onTag }}
 
     # If you are building/releasing your Linux app for Snapcraft (which is electron-builder's default), you will additionally need to install 
     # and sign in to Snapcraft. This can be done using an action-snapcraft step before the action-electron-builder step:
@@ -63,9 +70,10 @@ jobs:
         # node_modules/.bin/vue-cli-service electron:build --mac -p always
         # but no release or artifact is created?
         # Official electron builder doco on this pubish flag suggests not setting it, and allowing the release system to do its thing when there is a tag push,
-        # onTag is not enough, even if you tag and push - I didn't get a release!
-        # args: "-p onTag"
-        args: "-p always"
+        # onTag is not enough, even if you tag and push - I didn't get a release!?
+        # Publishing to snap we want only on tag though, so we need onTag to work, hmmm
+        args: "-p onTag"
+        # args: "-p always"
 
         # Attempt to send build target options to electron builder
         # args: "--linux deb --win nsis msi --mac"
