@@ -15,6 +15,7 @@
           Welcome to Vuetify
         </h1>
         <p>The property passed to HelloWorld component is <code>{{ msg }}</code></p>
+        <p>The package version is {{ package_version }}</p>
 
         <!-- <v-row> -->
           <v-btn>hi andy SNAPPY</v-btn>
@@ -207,6 +208,13 @@
       ],
 
     }),
+    computed: {
+      package_version: function () {
+        return 999
+        // var appVersion = require('electron').remote.app.getVersion();
+        // return appVersion
+      }
+    },
   }
 </script>
 
