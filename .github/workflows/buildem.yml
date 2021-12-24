@@ -2,6 +2,7 @@ name: Buildem
 on:
   push:
     # branches: [ main ]
+    # A normal push shouldn't trigger the workflow
     tags: ['v*']
 
 jobs:
