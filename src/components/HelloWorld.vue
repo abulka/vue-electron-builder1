@@ -132,6 +132,9 @@
 </template>
 
 <script>
+  // import { ipcRenderer } from 'electron'  // NO must use preload.js trick and attach to window
+  import { version } from '../../package'  // Just in case we are running in a browser, read from package.json directly
+
   export default {
     name: 'HelloWorld',
     props: ['msg'],  // ANDY added back in
@@ -210,9 +213,32 @@
     }),
     computed: {
       package_version: function () {
-        return 999
-        // var appVersion = require('electron').remote.app.getVersion();
-        // return appVersion
+        // Calculate the version number from the package.json file 
+        let result = version  // browser mode
+        if (this.amRunningInElectron())
+          result = this.backgroundGetPackageVersion()  // electron mode
+        return result
+      }
+    },
+    methods: {
+      amRunningInElectron: function () {
+        let userAgent = navigator.userAgent.toLowerCase();
+        let result = (userAgent.indexOf(' electron/') > -1)
+        console.log('Running in electron:', result)
+        return result
+      },
+      backgroundGetPackageVersion: function() {
+        // Synchronous message emmiter and handler
+        if (! this.amRunningInElectron()) throw('backgroundGetPackageVersion() only works in electron')
+        // First check we have initialised things properly
+        if (window.ipcRenderer == undefined) {
+          console.warn('window.ipcRenderer is undefined!')
+          console.log('* you need to use a preload.js which assigns ipcRenderer to window.ipcRenderer. Ensure contextIsolation is false otherwise otherwise assigning window.ipcRenderer = ipcRenderer will work inside the preload module only, then disappear.')
+        }
+        // Make the call to the main background process
+        let result = window.ipcRenderer.sendSync('synchronous-message')
+        console.log('result of sendSync is', result)
+        return result
       }
     },
   }

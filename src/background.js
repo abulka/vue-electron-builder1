@@ -3,7 +3,14 @@
 import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
+
 import { autoUpdater } from 'electron-updater'
+
+// const {ipcMain} = require('electron')
+import { ipcMain } from 'electron'
+import path from 'path'
+import os from 'os'
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Scheme must be registered before the app is ready
@@ -21,9 +28,17 @@ async function createWindow() {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
-      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+
+      // contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
+      contextIsolation: false,  // <--- ANDY NEEDED! otherwise assigning window.ipcRenderer = ipcRenderer will work inside the preload module only, then disappear
+
+      preload: path.join(__dirname, 'preload.js')  // ANDY ADDED TO ALLOW EVENT COMMS
     }
   })
+  console.log('ANDY SAYS devel mode is', process.env.NODE_ENV)
+  console.log('ANDY SAYS contextIsolation normally would be', !process.env.ELECTRON_NODE_INTEGRATION, 'but I have forced it to be', false)
+  console.log('ANDY SAYS preload path is', path.join(__dirname, 'preload.js'))
+  console.log('ANDY SAYS preload path is', path.join(app.getAppPath(), 'preload.js'))
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
@@ -81,3 +96,32 @@ if (isDevelopment) {
     })
   }
 }
+
+// Event Communication
+
+// Event handler for synchronous incoming messages
+ipcMain.on('synchronous-message', (event, arg) => {
+  console.log('background.js event handler got arg', arg) 
+
+  // Synchronous event emmision
+  // event.returnValue = 'sync pong'
+  // event.returnValue = `sync pong ${app.getVersion()}`
+  event.returnValue = app.getVersion()
+
+  // Taken from https://www.electronjs.org/docs/latest/api/process#processversionschrome-readonly
+  let VersionInfo = {
+    version: app.getVersion(),
+    arch: os.arch(),
+    platform: process.platform,
+    chromeVersion: process.versions.chrome,
+    nodeVersion: process.versions.node,
+    electronVersion: process.versions.electron,
+    systemVersion: process.getSystemVersion(),
+    other: {
+      contextIsolation: process.contextIsolated,  // It is undefined in the main process
+      resourcesPath: process.resourcesPath
+    }
+   };
+   console.log('ANDY SAYS VersionInfo is', VersionInfo)
+})
+
